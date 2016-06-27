@@ -151,7 +151,7 @@ connect.default <- function(dbms = "sql server",
     if (missing(port) || is.null(port))
       port <- "3306"
     pathToJar <- system.file("java",
-                             "mysql-connector-java-5.1.30-bin.jar",
+                             "mysql-connector-java-5.1.39-bin.jar",
                              package = "DatabaseConnector")
     driver <- jdbcSingleton("com.mysql.jdbc.Driver", pathToJar, identifier.quote = "`")
     connectionString <- paste("jdbc:mysql://", server, ":", port, "/?useCursorFetch=true", sep = "")
