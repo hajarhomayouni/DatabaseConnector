@@ -312,29 +312,30 @@ connect.default <- function(dbms = "sql server",
   }
   #<hajar>
   if (dbms == "googlebigquery") {
-    writeLines("Connecting using GBQ driver")
+  #  writeLines("Connecting using GBQ driver")
     #https://www.googleapis.com/bigquery/v2/projects/sandbox-omop/datasets/omop5deid/
-    if (!grepl("/", server))
-      stop("Error: database ID and project ID not included in server string but is required for GBQ Please specify server as <host>/<projectID>/<databaseID>")
-    parts <- unlist(strsplit(server, "/"))
-    projectId <- parts[2]
-    databaseId <- parts[3]
-    pathToJar <- system.file("java", "cdata.jdbc.googlebigquery.jar", package = "DatabaseConnector")
-    driver <- jdbcSingleton("cdata.jdbc.googlebigquery.GoogleBigQueryDriver", pathToJar, identifier.quote = "`")
-    connection <- RJDBC::dbConnect(driver, paste("jdbc:googlebigquery:OAuthClientId=",
-                                                 user,
-                                                 ";OAuthClientSecret=",
-                                                 password,
-                                                 ";DataSetId=",
-                                                 databaseId,
- 						 ";ProjectId=",
-                                                 projectId,
-						 ";InitiateOAuth=GETANDREFRESH;logfile=/home/hajar_homayouni/researches/CData/logfile.txt; verbosity=3;oauthsettingslocation=/home/hajar_homayouni/researches/CData/OAuthSettings.txt",						 
-                                                 sep = ""))
-    if (!missing(extraSettings) && !is.null(extraSettings))
-      connectionString <- paste(connectionString, "?", extraSettings, sep = "")
-    attr(connection, "dbms") <- dbms
-    return(connection)
+ #  if (!grepl("/", server))
+ #     stop("Error: database ID and project ID not included in server string but is required for GBQ Please specify server as <host>/<projectID>/<databaseID>")
+ #   parts <- unlist(strsplit(server, "/"))
+ #   projectId <- parts[2]
+ #   databaseId <- parts[3]
+ #   pathToJar <- system.file("java", "cdata.jdbc.googlebigquery.jar", package = "DatabaseConnector")
+ #   driver <- jdbcSingleton("cdata.jdbc.googlebigquery.GoogleBigQueryDriver", pathToJar, identifier.quote = "`")
+ #   connection <- RJDBC::dbConnect(driver, paste("jdbc:googlebigquery:OAuthClientId=",
+ #                                                user,
+ #                                                ";OAuthClientSecret=",
+ #                                                password,
+ #                                                ";DataSetId=",
+ #                                                databaseId,
+ #						 ";ProjectId=",
+ #                                                projectId,
+ #						 ";InitiateOAuth=GETANDREFRESH;logfile=/home/hajar_homayouni/researches/CData/logfile.txt; verbosity=3;oauthsettingslocation=/home/hajar_homayouni/researches/CData/OAuthSettings.txt",						 
+ #                                                sep = ""))
+ #   if (!missing(extraSettings) && !is.null(extraSettings))
+ #     connectionString <- paste(connectionString, "?", extraSettings, sep = "")
+ #   attr(connection, "dbms") <- dbms
+ #   return(connection)
+	  return "googlebigquery"
   }
   #</hajar>
   if (dbms == "redshift") {
