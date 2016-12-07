@@ -321,7 +321,7 @@ connect.default <- function(dbms = "sql server",
     databaseId <- parts[3]
     pathToJar <- system.file("java", "GoogleBigQueryJDBC42.jar", package = "DatabaseConnector")
     driver <- jdbcSingleton("com.simba.googlebigquery.jdbc42.Driver", pathToJar, identifier.quote = "`")
-  conn <- RJDBC::dbConnect(driver,paste("jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=",projectId,";OAuthType=0;OAuthServiceAcctEmail=",user,";OAuthPvtKeyPath=",password,";",sep = ""))
+    connection <- RJDBC::dbConnect(driver,paste("jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=",projectId,";OAuthType=0;OAuthServiceAcctEmail=",user,";OAuthPvtKeyPath=",password,";",sep = ""))
 			 
                                                 
    if (!missing(extraSettings) && !is.null(extraSettings))
