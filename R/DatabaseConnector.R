@@ -321,22 +321,6 @@ connect.default <- function(dbms = "sql server",
     databaseId <- parts[3]
     pathToJar <- system.file("java", "GoogleBigQueryJDBC42.jar", package = "DatabaseConnector")
     driver <- jdbcSingleton("com.simba.googlebigquery.jdbc42.Driver", pathToJar, identifier.quote = "`")
-
-    pathToJar <- system.file("java", "jackson-core-2.1.3.jar", package = "DatabaseConnector")	
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "google-oauth-client-1.22.0.jar", package = "DatabaseConnector")	
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "google-http-client-jackson2-1.22.0.jar", package = "DatabaseConnector")
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "google-http-client-1.22.0.jar", package = "DatabaseConnector")
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "GoogleBigQueryJDBC41.jar", package = "DatabaseConnector")
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "google-api-services-bigquery-v2-rev320-1.22.0.jar", package = "DatabaseConnector")
-    .jaddClassPath(pathToJar)
-    pathToJar <- system.file("java", "google-api-client-1.22.0.jar", package = "DatabaseConnector")
-    .jaddClassPath(pathToJar)
-
   conn <- RJDBC::dbConnect(driver,paste("jdbc:bigquery://https://www.googleapis.com/bigquery/v2:443;ProjectId=",projectId,";OAuthType=0;OAuthServiceAcctEmail=",user,";OAuthPvtKeyPath=",password,";",sep = ""))
 			 
                                                 
